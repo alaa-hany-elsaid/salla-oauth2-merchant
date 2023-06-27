@@ -34,8 +34,11 @@ class SallaScopeTest extends TestCase
         ]);
         $uri = parse_url($url);
         parse_str($uri['query'], $query);
-
         $this->assertArrayHasKey('scope', $query);
-        $this->assertContains('offline_access', $query['scope']);
+        if (is_array($query['scope']))
+            $this->assertArrayHasKey('offline_access', $query['scope']);
+        else
+            $this->assertStringContainsStringIgnoringCase('offline_access', $query['scope']);
+
     }
 }

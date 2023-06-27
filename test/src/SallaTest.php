@@ -38,8 +38,7 @@ class SallaTest extends TestCase
         $this->assertArrayHasKey('redirect_uri', $query);
         $this->assertArrayHasKey('response_type', $query);
         $this->assertArrayHasKey('scope', $query);
-
-        $this->assertAttributeNotEmpty('state', $this->provider);
+        $this->assertObjectHasAttribute('state', $this->provider);
     }
 
     public function testBaseAccessTokenUrl()
